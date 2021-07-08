@@ -5,9 +5,8 @@ let data ={text: '', num: input.value};
 function getText() {
 	data.num= input.value
 	fetch(`http://numbersapi.com/${data.num}`)
-	 .then(response=> response.text())
-	 .then(response=> data.text=response)
-	 document.getElementById('show').innerText = data.text;
+	 .then(response=> document.getElementById('show').innerText = response.text())
+	 .then(console.log)
 }
 
 function checkLength(){
@@ -15,11 +14,12 @@ function checkLength(){
 }
 
 enter.addEventListener("click", function() {
-	checkLength();
+	getText();
 })
 
 input.addEventListener("keypress", function() {
 	if (event.keyCode===13) {
-		checkLength();
+		getText();
 	}
 })
+
