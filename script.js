@@ -2,11 +2,27 @@ const input = document.getElementById('type');
 const enter = document.getElementById('enter');
 let data ={text: '', num: input.value};
 
+function delay(tx, tm) {
+	setTimeout(function(){
+		document.getElementById('show').innerText = tx;
+	}, tm);
+}
+
 function getText() {
 	data.num= input.value
 	fetch(`http://numbersapi.com/${data.num}`)
-	 .then(response=> document.getElementById('show').innerText = response.text())
-	 .then(console.log)
+		.then(response=> response.text())
+	  .then(response=> data.text=response);
+	let mes='wait';
+	let time = 0;
+	for (let i=0;i<3;i++){
+		time+=500;
+		mes+='..';
+		delay(mes, time);
+	};
+	setTimeout(()=>{
+		document.getElementById('show').innerText = data.text;
+	}, 1800);
 }
 
 function checkLength(){
@@ -14,12 +30,12 @@ function checkLength(){
 }
 
 enter.addEventListener("click", function() {
-	getText();
+	checkLength();
 })
+
 
 input.addEventListener("keypress", function() {
 	if (event.keyCode===13) {
-		getText();
+		checkLength();
 	}
 })
-
