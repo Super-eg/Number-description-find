@@ -7,7 +7,7 @@ function getText() {
 	fetch(`http://numbersapi.com/${ data.num }`)
 		.then(response=> response.text())
 		.then(response=> data.text=response)
-		.then(response=> document.getElementById('show').innerText = data.text)
+		.then(response=> document.getElementById('show').innerText = data.text);
 }
 
 function checkLength() {
